@@ -1,32 +1,34 @@
 const Customer = require('./src/model/customer');
-const DbMigration = require('./src/config/db-migration')
+const DbMigration = require('./src/config/db-migration');
 const run = async () => {
+
     await DbMigration();
+    // manager -> conn, repo, service
     // CRUD Basic
-    const addCustomerBulk = await Customer().bulkCreate([
-        {
-            name: 'John Samuel',
-            address: 'Bandung',
-            phone: '9229020',
-            email: 'john.samuel@usa.com',
-            balance: 50
-        },
-        {
-            name: 'Manoj P',
-            address: 'Jakarta',
-            phone: '2829299',
-            email: 'manoj.p@usa.com',
-            balance: 100
-        },
-        {
-            name: 'Fadli Haekal',
-            address: 'Malang',
-            phone: '2829992',
-            email: 'fadli.haikal@usa.com',
-            balance: 20
-        }
-    ]);
-    console.log('addCustomerBulk:', addCustomerBulk.length)
+    // const addCustomerBulk = await Customer().bulkCreate([
+    //     {
+    //         name: 'John Samuel',
+    //         address: 'Bandung',
+    //         phone: '9229020',
+    //         email: 'john.samuel@usa.com',
+    //         balance: 50
+    //     },
+    //     {
+    //         name: 'Manoj P',
+    //         address: 'Jakarta',
+    //         phone: '2829299',
+    //         email: 'manoj.p@usa.com',
+    //         balance: 100
+    //     },
+    //     {
+    //         name: 'Fadli Haekal',
+    //         address: 'Malang',
+    //         phone: '2829992',
+    //         email: 'fadli.haikal@usa.com',
+    //         balance: 20
+    //     }
+    // ]);
+    // console.log('addCustomerBulk:', addCustomerBulk.length)
 
     // Select * FROM ....
     const customers = await Customer().findAll();

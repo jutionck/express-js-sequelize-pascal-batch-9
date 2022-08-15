@@ -1,8 +1,9 @@
 const { DataTypes } = require("sequelize");
-const DbConn = require('../config/db');
+const Config = require('../config/config');
+const { initDb } = require('../manager/infra.manager')(Config); // no name ?
 const MST_CUSTOMER = 'mst_customer';
 module.exports = () => {
-    return DbConn().define(MST_CUSTOMER, {
+    return initDb().define(MST_CUSTOMER, {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
