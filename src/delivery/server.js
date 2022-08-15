@@ -16,6 +16,7 @@ module.exports = () => {
     const infraManager = () => InfraManager(Config);
     const repoManager = () => RepoManager(infraManager);
     const serviceManager = () => ServiceManager(repoManager);
+    const { initDb } = infraManager()
 
     const initCustomerRoute = () => {
         const customerController = () => CustomerController(serviceManager().customerService());
@@ -29,7 +30,7 @@ module.exports = () => {
 
     const run = () => {
         initController();
-        DbMigration().catch();
+        DbMigration(initDb()).catch();
         const server = http.createServer(app);
         server.on('error', (err) => {
             console.log(`Server failed to start ${err.message}`)
