@@ -1,13 +1,17 @@
 const CustomerService = require('../service/customer.service');
-const CustomerRepository = require("../repository/customer.repository");
+const UserService = require('../service/user.service');
 module.exports = (repoManager) => {
-    const { customerRepo } = repoManager();
+    const { customerRepo, userRepo } = repoManager();
     // Semua repo
     const customerService = () => {
         return () => CustomerService(customerRepo());
     }
 
+    const userService = () => {
+        return () => UserService(userRepo());
+    }
+
     return {
-        customerService
+        customerService, userService
     }
 }
